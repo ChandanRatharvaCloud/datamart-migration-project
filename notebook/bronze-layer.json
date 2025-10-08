@@ -1,0 +1,84 @@
+{
+	"name": "bronze-layer",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "sparkpool",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "11cc64fc-763a-4ad5-8e5f-20c171915479"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/16a3eefe-7a80-4357-b186-6221ffab82f1/resourceGroups/reg_datamart/providers/Microsoft.Synapse/workspaces/synapseanalyticsdevenv/bigDataPools/sparkpool",
+				"name": "sparkpool",
+				"type": "Spark",
+				"endpoint": "https://synapseanalyticsdevenv.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/sparkpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.4",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"a = 10"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"container = ^753507db-9f8b-4eb7-b7d2-0c91e882053e'\n",
+					"file_name = 'change_request.csv'\n",
+					"table_name - file_name.replace('.csv','')\n",
+					"storage_account - 'stoweugaihc01dv.dfs.core.windows.net'\n",
+					"landing layer_name = 753507db-9f8b-4eb7-b7d2-0c91882053e/landing-layer'\n",
+					"bronze_layer_name = \"bronze-layer*\n",
+					"silver_layer_name\n",
+					"= 'silver-layer'\n",
+					"gold _layer_name - 'gold-layer*\n",
+					"date_format_string = \"MM-dd-yyyy HH:mm: ss)\n",
+					"empty_string_as = \"Null\""
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					""
+				],
+				"execution_count": null
+			}
+		]
+	}
+}
