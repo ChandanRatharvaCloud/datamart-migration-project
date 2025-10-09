@@ -1,0 +1,23 @@
+{
+	"name": "ds_silver_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "synapseanalyticsdevenv-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "silver-zone",
+				"fileSystem": "adlsgen2"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
