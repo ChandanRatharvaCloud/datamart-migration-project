@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "b759ed79-94c1-478f-adaf-f57ccb72997e"
+				"spark.autotune.trackingId": "30951ea8-4a1e-42b4-8806-2feda15819e2"
 			}
 		},
 		"metadata": {
@@ -50,129 +50,23 @@
 		"cells": [
 			{
 				"cell_type": "code",
-				"metadata": {
-					"collapsed": false
-				},
 				"source": [
 					"# Construct the ADLS Gen2 path\n",
-					"adls_path = \"abfss://adlsgen2@sadevenvdatamart.dfs.core.windows.net/bronze-zone/Courses_join.csv\"\n",
+					"adls_path = \"abfss://adlsgen2@sadevenvdatamart.dfs.core.windows.net/bronze-zone\"\n",
 					"\n",
 					"# Read the CSV file into a DataFrame\n",
-					"df = spark.read \\\n",
-					"    .format(\"csv\") \\\n",
-					"    .option(\"header\", \"true\") \\\n",
-					"    .option(\"inferSchema\", \"true\") \\\n",
+					"df1 = spark.read \\\n",
+					"    .format(\"parquet\") \\\n",
 					"    .load(adls_path)\n",
 					"\n",
 					"# Show a sample of the data\n",
-					"df.show()\n",
-					"display(df)"
-				],
-				"execution_count": 6
-			},
-			{
-				"cell_type": "code",
-				"source": [
+					"df1.show()\n",
+					"display(df1)\n",
+					"\n",
 					"adls_path = \"abfss://adlsgen2@sadevenvdatamart.dfs.core.windows.net/silver-zone\"\n",
-					"df.write.format(\"parquet\").mode(\"overwrite\").save(adls_path)"
+					"df1.write.format(\"parquet\").mode(\"overwrite\").save(adls_path)"
 				],
-				"execution_count": 7
-			},
-			{
-				"cell_type": "code",
-				"source": [
-					"# a = 10"
-				],
-				"execution_count": 3
-			},
-			{
-				"cell_type": "code",
-				"source": [
-					"# container = ^753507db-9f8b-4eb7-b7d2-0c91e882053e'\n",
-					"# file_name = 'change_request.csv'\n",
-					"# table_name - file_name.replace('.csv','')\n",
-					"# storage_account - 'stoweugaihc01dv.dfs.core.windows.net'\n",
-					"# landing layer_name = 753507db-9f8b-4eb7-b7d2-0c91882053e/landing-layer'\n",
-					"# bronze_layer_name = \"bronze-layer*\n",
-					"# silver_layer_name= 'silver-layer'\n",
-					"# gold _layer_name - 'gold-layer*\n",
-					"# date_format_string = \"MM-dd-yyyy HH:mm: ss)\n",
-					"# empty_string_as = \"Null\""
-				],
-				"execution_count": null
-			},
-			{
-				"cell_type": "code",
-				"source": [
-					"# from pyspark.sql functions import current_date\n",
-					"# from pyspark.sql import SparkSession, functions as F, types as T import os\n",
-					"# try:\n",
-					"# # Step 1: Define paths\n",
-					"# #landing_path = f*abfss://{container)@{storage_account}/{landing_layer_name}/{file_name}*\n",
-					"# landing_path = f\"abfss: //{container}@{storage_account}/{file_name}\"\n",
-					"\n",
-					"# Step 2: Read CSV from Landing Layer\n",
-					"# df_read_csv = (\n",
-					"# spark. read. format(\"csv\")\n",
-					"# -option (\"headen\"\n",
-					"# * True)\n",
-					"# - option (\"inferschema\", True)\n",
-					"# - option(\"delimiter\"\n",
-					"# -option (\"quote\"\n",
-					"# # Consider providing an explicit schema for big/critical jobs\n",
-					"# # <-- Pipe-delimited input\n",
-					"# # Safe defaults for quoted\n",
-					"# option (\"escape\",\n",
-					"# 7**)\n",
-					"# * option(\"ignoreLeadingwhiteSpace\", True)\n",
-					"# - option(\"ignoreTrailingWhitespace\"\n",
-					"# , True)\n",
-					"# # option(\"nullValue\"\n",
-					"# 1\n",
-					"# # Optional: treat empty tokens as NULL on read\n",
-					"# . load(landing_path)\n",
-					"# )\n",
-					"# # Step 3: Replace dots in column names\n",
-					"# for col name in d_read_csv.columns:\n",
-					"# new name = col_name.replace(• -).replace(/,_*)\n",
-					"# new_name ! = col_name:\n",
-					"# df_read_csv = df_read_csv.withColumnRenamed (col_name, new_name)\n",
-					"# # Step 2: Identify string columns\n",
-					"# string_cols = [f.name for f in f_read_csv. schema. fields if isinstance(f.dataType, T.StringType)]\n",
-					"# # Step 3: Replace NULL and blank/whitespace-only cells with 'NA'\n",
-					"# d_read_csv = f_read_csv. select([\n",
-					"# F. when (F. col(c). isNull() | (F. trim(F .col(c)) == \"\"), F.lit(empty_string_as))\n",
-					"# -otherwise (F.col(c)) alias(c) if c in string cols else F.col (c) for c in df read cv. columns\n",
-					"# Search\n",
-					"# 55\n",
-					"# 6\n",
-					"# 17\n",
-					"\n",
-					"# # Step 3: Replace dots in column names\n",
-					"# for col name in df_read_csv.columns:\n",
-					"# new_name = col_name.replace(*.'\n",
-					"# if new name != col_name:\n",
-					"# d_read_csv = df_read_csv.withColumnRenamed(col_name, new_name)\n",
-					"# # Step 2: Identify string columns\n",
-					"# string_ cols - Lf-name for f in df_read_csv.schema fields if isinstance(f.dataType, T.StringType)]\n",
-					"# # Step 3: Replace NULL and blank/whitespace-only cells with \"NA'\n",
-					"# d_read_csv - df_read_csv.select(l\n",
-					"# F. when (F.col(c)-isNull() | (F.trim(F.col(c)) -= **), F.lit(empty_string_as))\n",
-					"# .otherwise(F.col(c)).alias(c) if c in string cols else F.col(c)\n",
-					"# for c in df_read_csv.columns\n",
-					"# 1)\n",
-					"# # Step 4: Add ingestion date column\n",
-					"# df with_date = df read_csv.withColumn (\"ingestion_date\", F.date_format(current_date(),date format_string))\n",
-					"# # Step 5: Write to Bronze Layer in Parquet format\n",
-					"# bronze_base_path = f\"abfss://{container)@(storage_account}/{bronze_layer_name}/{table_name}\"\n",
-					"# d_with_date.write.mode(\"overwrite\") -parquet (bronze_base path)\n",
-					"# print(f\"™\n",
-					"# Data successfully written to BRONZE table: (table_name)\")\n",
-					"# except Exception as e:\n",
-					"# print(\" X Failed to write data to BRONZE LAYER.\")\n",
-					"# print (f\"Error: {str(e)}\")"
-				],
-				"execution_count": null
+				"execution_count": 9
 			}
 		]
 	}
