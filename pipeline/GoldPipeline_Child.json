@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"notebook": {
-						"referenceName": "Notebook 1",
+						"referenceName": "shareNB_Provision",
 						"type": "NotebookReference"
 					},
 					"snapshot": true
