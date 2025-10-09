@@ -1,0 +1,33 @@
+{
+	"name": "Parquet1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "synapseanalyticsdevenv-WorkspaceDefaultStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "silver-zone",
+				"fileSystem": "adlsgen2"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "CourseID",
+				"type": "INT32"
+			},
+			{
+				"name": "CourseName",
+				"type": "UTF8"
+			},
+			{
+				"name": "StudentID",
+				"type": "INT32"
+			}
+		]
+	}
+}
