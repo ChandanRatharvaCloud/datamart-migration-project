@@ -19,7 +19,8 @@
 					"value": "@dataset().Target_Object_Name",
 					"type": "Expression"
 				},
-				"folderPath": "landing-zone"
+				"folderPath": "landing-zone",
+				"fileSystem": "adlsgen2"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
