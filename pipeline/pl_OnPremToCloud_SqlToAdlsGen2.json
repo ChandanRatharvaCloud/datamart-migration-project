@@ -120,7 +120,13 @@
 										"outputs": [
 											{
 												"referenceName": "ds_dynamic",
-												"type": "DatasetReference"
+												"type": "DatasetReference",
+												"parameters": {
+													"Target_Object_Name": {
+														"value": "@concat(item().Target_Object_Name,'.csv')",
+														"type": "Expression"
+													}
+												}
 											}
 										]
 									},
