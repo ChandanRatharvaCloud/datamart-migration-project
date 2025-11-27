@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Financial Sample.csv",
+				"fileName": "Employee.csv",
 				"folderPath": "landing-zone",
 				"fileSystem": "adlsgen2"
 			},
