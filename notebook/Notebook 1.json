@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "9fe475be-c006-4777-9f11-2d2e1a2e212c"
+				"spark.autotune.trackingId": "b4518587-2f6f-41ab-8a0f-0a60bc4eed49"
 			}
 		},
 		"metadata": {
@@ -75,6 +75,13 @@
 					"display(df_sum)"
 				],
 				"execution_count": 7
+			},
+			{
+				"cell_type": "code",
+				"source": [
+					"df_sum.write.format(\"csv\").mode(\"overwrite\").save(\"abfss://adlsgen2@sadevenvdatamart.dfs.core.windows.net/gold-zone/Transfomreddata/Dim_Employee\")"
+				],
+				"execution_count": null
 			},
 			{
 				"cell_type": "code",
