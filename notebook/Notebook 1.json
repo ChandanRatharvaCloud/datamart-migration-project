@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "51881c0e-41f1-4624-b121-73c84781b275"
+				"spark.autotune.trackingId": "9fe475be-c006-4777-9f11-2d2e1a2e212c"
 			}
 		},
 		"metadata": {
@@ -50,24 +50,20 @@
 		"cells": [
 			{
 				"cell_type": "code",
+				"metadata": {
+					"collapsed": false
+				},
 				"source": [
 					"df = spark.read.format(\"csv\") \\\n",
 					"    .option(\"header\", \"true\") \\\n",
 					"    .option(\"inferSchema\", \"true\") \\\n",
-					"    .load(\"abfss://landing-zone@sadevenvc.dfs.core.windows.net/Pay_India.csv\")\n",
+					"    .load(\"abfss://adlsgen2@sadevenvdatamart.dfs.core.windows.net/landing-zone/Employee.csv\")\n",
 					"\n",
 					"df.show()\n",
+					"display(df)\n",
 					""
 				],
-				"execution_count": 1
-			},
-			{
-				"cell_type": "code",
-				"source": [
-					"df_sum = df.groupBy(\"Emp ID\").sum(\"Salary\")\n",
-					""
-				],
-				"execution_count": null
+				"execution_count": 6
 			},
 			{
 				"cell_type": "code",
@@ -75,27 +71,17 @@
 					"collapsed": false
 				},
 				"source": [
+					"df_sum = df.groupBy(\"Dept\").sum(\"Salary\")\n",
 					"display(df_sum)"
 				],
-				"execution_count": null
+				"execution_count": 7
 			},
 			{
 				"cell_type": "code",
 				"source": [
-					"from pyspark.sql.functions import sum\n",
-					"\n",
-					"df_sum = df.groupBy(\"Emp ID\").agg(sum(\"Salary\").alias(\"TotalSalary\"))\n",
-					"df_sum.show()\n",
-					""
+					"df_sum.write.format(\"parquet\").mode(\"overwrite\").save(\"abfss://adlsgen2@sadevenvdatamart.dfs.core.windows.net/gold-zone/Transfomreddata/Dim_Employee\")"
 				],
-				"execution_count": null
-			},
-			{
-				"cell_type": "code",
-				"source": [
-					"df_sum.write.format(\"parquet\").mode(\"overwrite\").save(\"abfss://bronze-layer@sadevenvc.dfs.core.windows.net/parquet/TransformedData/\")"
-				],
-				"execution_count": null
+				"execution_count": 8
 			}
 		]
 	}
